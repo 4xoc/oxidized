@@ -11,7 +11,8 @@ class GithubRepo < Oxidized::Hook
 
     fetch_and_merge_remote(repo)
 
-    remote.push([repo.head.name], credentials: credentials)
+    response = remote.push([repo.head.name], credentials: credentials)
+    log "push result: #{response.inspect}", :debug
   end
 
   def fetch_and_merge_remote(repo)
